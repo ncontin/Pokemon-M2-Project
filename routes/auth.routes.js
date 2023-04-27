@@ -13,13 +13,24 @@ router.get("/signup", (req, res, next) => {
 /* POST to work with the values of the signup form */
 router.post("/signup", async (req, res, next) => {
   try {
-    if (pwdRegex.test(req.body.password)) {
-      const salt = await bcrypt.genSalt(13);
-      const passwordHash = bcrypt.hashSync(req.body.password, salt);
-      await User.create({ username: req.body.username, password: passwordHash });
-      res.redirect("/auth/login");
+    const potentialUser = await User.findOne({ username: req.body.username });
+    if (!potentialUser) {
+      if (pwdRegex.test(req.body.password)) {
+        const salt = await bcrypt.genSalt(13);
+        const passwordHash = bcrypt.hashSync(req.body.password, salt);
+        await User.create({ username: req.body.username, password: passwordHash });
+        res.redirect("/auth/login");
+      } else {
+        res.render("auth/signup", {
+          errorMessage: "Password is not strong enough",
+          data: { username: req.body.username },
+        });
+      }
     } else {
-      res.render("signup", { errorMessage: "Password not sufficient" });
+      res.render("auth/signup", {
+        errorMessage: "Username already in use",
+        data: { username: req.body.username },
+      });
     }
   } catch (error) {
     console.log(error);

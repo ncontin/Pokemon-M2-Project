@@ -12,3 +12,7 @@
     <button type="submit">SignUp</button>
   </form>
 </div>
+
+<% if (typeof errorMessage !== 'undefined') { %>
+<p style="color: red"><%= errorMessage %></p>
+<% } %>
