@@ -13,10 +13,14 @@ router.get("/signup", (req, res, next) => {
 /* POST to work with the values of the signup form */
 router.post("/signup", async (req, res, next) => {
   try {
-    const salt = await bcrypt.genSalt(13);
-    const passwordHash = bcrypt.hashSync(req.body.password, salt);
-    const newUser = await User.create({ username: req.body.username, password: passwordHash });
-    console.log(newUser);
+    if (pwdRegex.test(req.body.password)) {
+      const salt = await bcrypt.genSalt(13);
+      const passwordHash = bcrypt.hashSync(req.body.password, salt);
+      await User.create({ username: req.body.username, password: passwordHash });
+      res.redirect("/auth/login");
+    } else {
+      res.render("signup", { errorMessage: "Password not sufficient" });
+    }
   } catch (error) {
     console.log(error);
   }
@@ -32,19 +36,22 @@ router.post("/login", async (req, res, next) => {
     console.log(user);
     if (!!user) {
       if (bcrypt.compareSync(req.body.password, user.password)) {
-        req.session.user = user;
-        console.log(user);
+        // If password is correct
+        req.session.user = { username: user.username };
+        console.log("Succesful log in");
         res.redirect("/main");
       } else {
         // If password is wrong
         res.render("auth/login", { errorMessage: "Wrong password" });
       }
     }
+    //If user is wrong
+    else {
+      res.render("auth/login", { errorMessage: "Invalid user" });
+    }
   } catch (error) {
     console.log(error);
   }
 });
-
-
 
 module.exports = router;
