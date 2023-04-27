@@ -1,0 +1,14 @@
+<div id="form">
+  <h2>Signup</h2>
+  <form method="POST" action="/auth/signup">
+    <label
+      >Username:
+      <input
+        name="username"
+        required
+        value="<% if (typeof errorMessage !== 'undefined') { %><%= data.username %><% } %>"
+    /></label>
+    <label>Password: <input type="password" name="password" required /></label>
+    <button type="submit">SignUp</button>
+  </form>
+</div>
