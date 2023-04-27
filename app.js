@@ -19,8 +19,6 @@ require("./config/session.config")(app);
 const capitalize = require("./utils/capitalize");
 const projectName = "Pokemon-M2-Project";
 
-const { isLoggedOut } = require("./middleware/route-guard");
-
 app.locals.appTitle = `${capitalize(projectName)} created with IronLauncher`;
 
 // 👇 Start handling routes here
@@ -28,8 +26,9 @@ const indexRoutes = require("./routes");
 app.use("/", indexRoutes);
 
 // authRouter needs to be added so paste the following lines:
-const authRouter = require("./routes/auth.routes"); // <== has to be added
-app.use("/auth", authRouter); // <== has to be added
+const auth = require("./routes/auth.routes");
+const { isLoggedOut } = require("./middleware/route-guard");
+app.use("/auth", isLoggedOut, auth);
 // ...
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes

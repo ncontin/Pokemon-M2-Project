@@ -18,14 +18,10 @@ router.get("/private", isLoggedIn, (req, res, next) => {
   res.render("private", { user: req.session.user });
 });
 
-router.get("/logout", (req, res, next) => {
+router.post("/logout", (req, res, next) => {
   req.session.destroy((err) => {
-    if (err) {
-      console.log(err);
-      next(err);
-    } else {
-      res.render("main", { logOutMessage: "Succesfully logged out" });
-    }
+    if (err) next(err);
+    res.redirect("/");
   });
 });
 
