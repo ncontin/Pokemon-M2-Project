@@ -22,7 +22,8 @@ router.post("/signup", async (req, res, next) => {
         res.redirect("/auth/login");
       } else {
         res.render("auth/signup", {
-          errorMessage: "Password is not strong enough",
+          errorMessage:
+            "The password must be at least 8 characters long, must contain at least one letter, one digit and one special character",
           data: { username: req.body.username },
         });
       }

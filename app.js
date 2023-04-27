@@ -10,7 +10,7 @@ require("./db");
 const express = require("express");
 
 const app = express();
-
+const { isLoggedOut } = require("./middleware/route-guard");
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config")(app);
 require("./config/session.config")(app);
@@ -25,9 +25,12 @@ app.locals.appTitle = `${capitalize(projectName)} created with IronLauncher`;
 const indexRoutes = require("./routes");
 app.use("/", indexRoutes);
 
+const pokemonRoutes = require("./routes/pokemon.routes");
+app.use("/pokemon", pokemonRoutes);
+
 // authRouter needs to be added so paste the following lines:
 const auth = require("./routes/auth.routes");
-const { isLoggedOut } = require("./middleware/route-guard");
+
 app.use("/auth", isLoggedOut, auth);
 // ...
 
