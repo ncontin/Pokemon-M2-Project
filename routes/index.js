@@ -25,10 +25,6 @@ router.post("/logout", (req, res, next) => {
   });
 });
 
-router.get("/create", isLoggedIn, (req, res, next) => {
-  console.log(req.session);
-  //render view and user is coming from req.session.user
-  res.render("create", { user: req.session.user });
-});
+
 
 module.exports = router;

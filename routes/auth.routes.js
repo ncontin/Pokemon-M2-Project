@@ -50,7 +50,7 @@ router.post("/login", async (req, res, next) => {
       if (bcrypt.compareSync(req.body.password, user.password)) {
         // If password is correct
         req.session.user = { username: user.username };
-        console.log("Succesful log in");
+        console.log("Successful log in");
         res.redirect("/main");
       } else {
         // If password is wrong

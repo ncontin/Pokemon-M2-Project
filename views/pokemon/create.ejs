@@ -1,2 +1,19 @@
 <h1>Create</h1>
-<!-- Ternary -> condition ? what happens if true : what happens if false -->
+
+<div>
+  <div>
+    <h1>Add a new Pokemon</h1>
+    <div>
+      <form action="/pokemon/create" method="POST">
+        <div><label for="name">POKEMON</label><input type="text" name="name" placeholder="Name of pokemon" /></div>
+        <div><label for="url">IMG</label> <input type="text" name="url" placeholder="url of img" /></div>
+        <div><input type="submit" value="Add POKEMON" /></div>
+      </form>
+      <a href="/main">Go Back</a>
+    </div>
+  </div>
+</div>
+
+<% if (typeof message !== 'undefined') { %>
+<p style="color: red"><%= message %></p>
+<% } %>
