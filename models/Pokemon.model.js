@@ -4,7 +4,7 @@ const pokemonSchema = new Schema(
   {
     name: String,
     img: String,
-    /* type: [
+    type: [
       {
         // One or two types of the Pokemon
         type: String,
@@ -36,7 +36,6 @@ const pokemonSchema = new Schema(
       type: String,
       required: true,
     },
- */
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`

@@ -1,0 +1,9 @@
+<h1>Pokedex</h1>
+
+<% allPokemon.forEach(pokemon => { %>
+<div>
+  <h2><%- pokemon.name %></h2>
+  <img src="<%= pokemon.img %> " alt="" />
+  <a href="/pokemon/<%= pokemon._id %>">More Info</a>
+</div>
+<% }) %>
