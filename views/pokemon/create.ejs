@@ -4,10 +4,10 @@
   <div>
     <h1>Add a new Pokemon</h1>
     <div>
-      <form action="/pokemon/create" method="POST">
+      <form action="/pokemon/create" method="POST" enctype="multipart/form-data">
         <div><label for="name">POKEMON</label><input type="text" name="name" placeholder="Name of pokemon" /></div>
 
-        <div><label for="url">IMG</label> <input type="text" name="url" placeholder="url of img" /></div>
+        <div><label for="url">IMG</label> <input type="file" name="url" placeholder="url of img" /></div>
 
         <div>
           <label for="type">TYPE</label>

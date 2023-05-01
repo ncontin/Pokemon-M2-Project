@@ -1,4 +1,4 @@
-// Define the pokemon names and images
+/* // Define the pokemon names and images
 const pokemonNames = ["Charmander", "Squirtle", "Bulbasaur"];
 const pokemonImages = ["charmander.png", "squirtle.png", "bulbasaur.png"];
 
@@ -49,3 +49,4 @@ function playGame(event) {
     resultText.style.color = "red";
   }
 }
+ */

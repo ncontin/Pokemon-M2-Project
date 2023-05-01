@@ -10,3 +10,29 @@ a {
 h1 {
   color: 15px;
 }
+
+#Charmander,
+#Squirtle,
+#Bulbasaur {
+  background-image: url("/images/pngfind.com-pokeball-png-1032129.png");
+  background-position: center;
+  background-size: contain;
+  width: 150px;
+  height: 150px;
+  margin: 10px;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  color: aliceblue;
+}
+
+#player,
+#computer {
+  width: 200px;
+  height: 200px;
+}
+#player-choice,
+#computer-choice {
+  max-width: 200px;
+  max-height: 200px;
+}
