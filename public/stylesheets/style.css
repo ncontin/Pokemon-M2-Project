@@ -1,6 +1,9 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  height: 100%;
+}
+html {
+  height: 100%;
 }
 
 a {
@@ -10,29 +13,18 @@ a {
 h1 {
   color: 15px;
 }
-
-#Charmander,
-#Squirtle,
-#Bulbasaur {
-  background-image: url("/images/pngfind.com-pokeball-png-1032129.png");
-  background-position: center;
-  background-size: contain;
-  width: 150px;
-  height: 150px;
-  margin: 10px;
-  border: none;
-  border-radius: 50%;
-  cursor: pointer;
-  color: aliceblue;
+.mainbody {
+  background-color: white;
+  height: 100%;
 }
-
-#player,
-#computer {
-  width: 200px;
-  height: 200px;
+.rotate {
+  animation: rotation 5s infinite linear;
 }
-#player-choice,
-#computer-choice {
-  max-width: 200px;
-  max-height: 200px;
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
 }

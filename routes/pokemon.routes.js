@@ -46,4 +46,41 @@ router.get("/:pokemonId", isLoggedIn, async (req, res, next) => {
   }
 });
 
+router.get("/update/:pokemonId", isLoggedIn, async (req, res, next) => {
+  try {
+    const pokemon = await Pokemon.findById(req.params.pokemonId);
+    console.log(pokemon);
+    res.render("pokemon/update", { user: req.session.user, pokemon });
+  } catch (error) {
+    console.log(error);
+  }
+});
+router.post("/update/:pokemonId", isLoggedIn, async (req, res, next) => {
+  try {
+    const object = {
+      name: req.body.name,
+      img: req.body.url,
+      type: req.body.type,
+      ability: req.body.ability,
+    };
+    const pokemon = await Pokemon.findByIdAndUpdate(
+      req.params.pokemonId,
+      object,
+      { new: true }
+    );
+    console.log(pokemon);
+    res.redirect("/pokemon/pokedex");
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.post("/delete/:pokemonId/", async (req, res) => {
+  try {
+    await Pokemon.findByIdAndDelete(req.params.pokemonId);
+    res.redirect("/pokemon/pokedex");
+  } catch (error) {
+    console.log(error);
+  }
+});
 module.exports = router;

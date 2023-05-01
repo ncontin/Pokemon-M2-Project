@@ -1,0 +1,60 @@
+<h1>Create</h1>
+
+<div>
+  <div>
+    <h1>Update a Pokemon</h1>
+    <div>
+      <form action="/pokemon/update/<%- pokemon._id %>" method="POST">
+        <div>
+          <label for="name">POKEMON</label
+          ><input
+            type="text"
+            name="name"
+            placeholder="Name of pokemon"
+            value="<%- pokemon.name %>"
+          />
+        </div>
+
+        <div>
+          <label for="url">IMG</label>
+          <input
+            type="text"
+            name="url"
+            placeholder="url of img"
+            value="<%- pokemon.img %>"
+          />
+        </div>
+
+        <div>
+          <label for="type">TYPE</label>
+          <select name="type" value="<%- pokemon.type %>">
+            <% [ "Bug", "Dark", "Dragon", "Electric", "Fairy", "Fighting",
+            "Fire", "Flying", "Ghost", "Grass", "Ground", "Ice", "Normal",
+            "Poison", "Psychic", "Rock", "Steel", "Water" ].forEach(element => {
+            %>
+            <option value="<%- element %>"><%- element %></option>
+
+            <% }) %>
+          </select>
+
+          <div>
+            <label for="ability">ABILITY</label
+            ><input
+              type="text"
+              name="ability"
+              placeholder="ability"
+              value="<%- pokemon.ability %>"
+            />
+          </div>
+        </div>
+        <div><input type="submit" value="Update POKEMON" /></div>
+      </form>
+      <a href="/pokemon/pokedex">Pokedex</a>
+      <a href="/main">Go Back</a>
+    </div>
+  </div>
+</div>
+
+<% if (typeof message !== 'undefined') { %>
+<p style="color: red"><%= message %></p>
+<% } %>
