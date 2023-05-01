@@ -1,6 +1,9 @@
 body {
-  padding: 50px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  height: 100%;
+}
+html {
+  height: 100%;
 }
 
 a {
@@ -9,4 +12,19 @@ a {
 
 h1 {
   color: 15px;
+}
+.mainbody {
+  background-color: white;
+  height: 100%;
+}
+.rotate {
+  animation: rotation 5s infinite linear;
+}
+@keyframes rotation {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(359deg);
+  }
 }

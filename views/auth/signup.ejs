@@ -1,16 +1,38 @@
-<div id="form">
-  <h2>Signup</h2>
-  <form method="POST" action="/auth/signup">
-    <label
-      >Username:
-      <input
-        name="username"
-        required
-        value="<% if (typeof errorMessage !== 'undefined') { %><%= data.username %><% } %>"
-    /></label>
-    <label>Password: <input type="password" name="password" required /></label>
-    <button type="submit">SignUp</button>
-  </form>
+<div class="row justify-content-center">
+  <div class="col-3">
+    <img
+      class="img-fluid rotate"
+      src="https://www.freepnglogos.com/uploads/pokemon-symbol-logo-png-31.png"
+      alt="pokemon logo"
+    />
+  </div>
+</div>
+<div class="row justify-content-center mt-5">
+  <div class="col-3">
+    <form method="POST" action="/auth/signup">
+      <div class="row">
+        <label class="form-label">Username:</label>
+        <input
+          class="form-control-lg"
+          name="username"
+          required
+          value="<% if (typeof errorMessage !== 'undefined') { %><%= data.username %><% } %>"
+        />
+      </div>
+      <div class="row">
+        <label class="form-label">Password:</label>
+        <input
+          class="form-control-lg"
+          type="password"
+          name="password"
+          required
+        />
+      </div>
+      <div class="row justify-content-center">
+        <button class="btn btn-outline-dark col-2" type="submit">SignUp</button>
+      </div>
+    </form>
+  </div>
 </div>
 
 <% if (typeof errorMessage !== 'undefined') { %>

@@ -3,7 +3,11 @@
 <% allPokemon.forEach(pokemon => { %>
 <div>
   <h2><%- pokemon.name %></h2>
-  <img src="<%= pokemon.img %> " alt="" />
+  <img width="200px" src="<%= pokemon.img %> " alt="" />
   <a href="/pokemon/<%= pokemon._id %>">More Info</a>
+  <a href="/pokemon/update/<%= pokemon._id %>">Update</a>
+  <form method="POST" action="/pokemon/delete/<%= pokemon._id %>">
+    <button type="submit">Delete</button>
+  </form>
 </div>
 <% }) %>
