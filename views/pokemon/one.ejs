@@ -1,0 +1,19 @@
+<div>
+  <h2><%- pokemon.name %></h2>
+  <img src="<%- pokemon.img %> " alt="" />
+  <p><%- pokemon.type %></p>
+  <p><%- pokemon.ability %></p>
+</div>
+
+<button id="captureBtn"><a href="/views/pokemon/capture.ejs">Capture It!</a></button>
+<div id="game-container">
+  <!-- Add three buttons for the player's choice -->
+  <button id="Charmander">Charmander</button>
+  <button id="Squirtle">Squirtle</button>
+  <button id="Bulbasaur">Bulbasaur</button>
+  <!-- Add two images for the player's and computer's choice -->
+  <img id="player-choice" src="" alt="" />
+  <img id="computer-choice" src="" alt="" />
+  <!-- Add a text element for the result -->
+  <h1 id="result-text"></h1>
+</div>
