@@ -8,23 +8,32 @@ router.get("/create", isLoggedIn, (req, res, next) => {
   res.render("pokemon/create", { user: req.session.user });
 });
 
-router.post("/create", isLoggedIn, fileUploader.single("url"), async (req, res, next) => {
-  try {
-    const object = {
-      name: req.body.name,
-      /* img: req.body.url, */
-      img: req.file.path,
-      type: req.body.type,
-      ability: req.body.ability,
-    };
-    const newPokemon = await Pokemon.create(object);
-    /* console.log(newPokemon); */
-    res.render("pokemon/create", { user: req.session.user, message: "Pokemon added successfully!" });
-  } catch (error) {
-    // Handle any errors that occur
-    next(error);
+router.post(
+  "/create",
+  isLoggedIn,
+  fileUploader.single("url"),
+  async (req, res, next) => {
+    try {
+      const object = {
+        name: req.body.name,
+        /* img: req.body.url, */
+        img: req.file.path,
+        type: req.body.type,
+        ability: req.body.ability,
+      };
+      const newPokemon = await Pokemon.create(object);
+      /* console.log(newPokemon); */
+      res.render("pokemon/create", {
+        user: req.session.user,
+        message: "Pokemon added successfully!",
+      });
+    } catch (error) {
+      // Handle any errors that occur
+      console.error(error);
+      next(error);
+    }
   }
-});
+);
 
 router.get("/pokedex", async (req, res) => {
   try {
