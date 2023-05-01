@@ -10,10 +10,17 @@ require("./db");
 const express = require("express");
 
 const app = express();
-const { isLoggedOut } = require("./middleware/route-guard");
+const { isLoggedOut, isLoggedIn } = require("./middleware/route-guard");
 // ℹ️ This function is getting exported from the config folder. It runs most pieces of middleware
 require("./config")(app);
 require("./config/session.config")(app);
+
+// https://stackoverflow.com/questions/23943272/node-js-how-can-i-use-my-local-variable-with-ejs-view
+app.use(function (req, res, next) {
+  res.locals.user = req.session.user;
+  res.locals.path = req.path;
+  next();
+});
 
 // default value for title local
 const capitalize = require("./utils/capitalize");
@@ -26,7 +33,7 @@ const indexRoutes = require("./routes");
 app.use("/", indexRoutes);
 
 const pokemonRoutes = require("./routes/pokemon.routes");
-app.use("/pokemon", pokemonRoutes);
+app.use("/pokemon", isLoggedIn, pokemonRoutes);
 
 // auth needs to be added so paste the following lines:
 const auth = require("./routes/auth.routes");

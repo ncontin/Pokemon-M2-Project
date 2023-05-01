@@ -21,7 +21,7 @@
           <span class="w-100 d-lg-none d-block">
             <!-- hidden spacer to center brand on mobile --></span
           >
-          <!-- <a class="navbar-brand" href="#"> Navbar 7 </a> -->
+          <a class="navbar-brand" href="/"> Pokemon </a>
           <div class="w-100 text-right">
             <button
               class="navbar-toggler"
@@ -37,11 +37,19 @@
           class="collapse navbar-collapse flex-grow-1 text-right"
           id="myNavbar7"
         >
-          <ul class="navbar-nav ms-auto flex-nowrap">
-            <li class="nav-item">
-              <a href="/auth/login" class="nav-link">Login</a>
-            </li>
-          </ul>
+          <div class="navbar-nav ms-auto flex-nowrap">
+            <% if(path !== "/") { %> <% if(!user) { %>
+            <a href="/auth/login" class="nav-link">Login</a>
+            <a href="/auth/signup" class="nav-link">Sign Up</a>
+            <% } else { %>
+            <a href="/main" class="nav-link">Main</a>
+            <a href="/private" class="nav-link">Private</a>
+            <a href="/pokemon/pokedex" class="nav-link">Pokedex</a>
+            <form method="POST" action="/logout">
+              <button class="nav-link" type="submit">Logout</button>
+            </form>
+            <% } %> <% } %>
+          </div>
         </div>
       </div>
     </nav>
@@ -53,6 +61,5 @@
     ></script>
 
     <script src="/js/script.js"></script>
-    
   </body>
 </html>
