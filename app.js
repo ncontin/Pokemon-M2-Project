@@ -28,7 +28,7 @@ app.use("/", indexRoutes);
 const pokemonRoutes = require("./routes/pokemon.routes");
 app.use("/pokemon", pokemonRoutes);
 
-// authRouter needs to be added so paste the following lines:
+// auth needs to be added so paste the following lines:
 const auth = require("./routes/auth.routes");
 
 app.use("/auth", isLoggedOut, auth);
