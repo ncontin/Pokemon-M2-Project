@@ -1,21 +1,20 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  /* css variable */
+  --bg-height: calc(100vh - 66px);
 }
 
 a {
   color: #00b7ff;
 }
 
-h1 {
-  color: 15px;
-}
 .login-wrapper {
-  height: 100vh;
+  height: var(--bg-height);
   background-image: url(../images/pikabg.jpeg);
   background-size: cover;
 }
 .signup-wrapper {
-  height: 100vh;
+  height: var(--bg-height);
   background-image: url(../images/signup3.webp);
   background-size: 40vw;
   background-repeat: no-repeat;
@@ -23,13 +22,13 @@ h1 {
   background-position-x: right;
 }
 .create-wrapper {
-  height: 100vh;
+  height: var(--bg-height);
   background-size: cover;
   background-image: url(../images/addpoki.jpeg);
   background-repeat: no-repeat;
 }
 .main-wrapper {
-  height: 100vh;
+  height: var(--bg-height);
   background-image: url(../images/gottacatchmain.png);
   background-size: 40vw;
   background-repeat: no-repeat;
@@ -55,6 +54,11 @@ h1 {
 .pokemon-card {
   margin: 20px;
   padding: 10px;
+  transition-duration: 0.3s;
+  transition-property: transform;
+}
+.pokemon-card:hover {
+  transform: scale(1.1);
 }
 .pokemon-card-buttons {
   display: flex;
