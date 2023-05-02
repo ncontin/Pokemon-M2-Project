@@ -29,6 +29,7 @@
         </div>
         <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar7">
           <div class="navbar-nav ms-auto flex-nowrap">
+            <a href="/pokemon/pokedex" class="nav-link">Pokedex</a>
             <% if(path !== "/") { %> <% if(!user) { %>
             <a href="/auth/login" class="nav-link">Login</a>
             <a href="/auth/signup" class="nav-link">Sign Up</a>
@@ -36,7 +37,6 @@
             <a href="/main" class="nav-link">Profile</a>
             <a href="/pokemon/create" class="nav-link">New Pokemon</a>
 
-            <a href="/pokemon/pokedex" class="nav-link">Pokedex</a>
             <form method="POST" action="/logout">
               <button class="nav-link" type="submit">Logout</button>
             </form>

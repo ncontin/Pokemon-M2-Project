@@ -42,14 +42,4 @@ router.get("/main", isLoggedIn, async (req, res) => {
   }
 });
 
-router.get("/main", isLoggedIn, async (req, res) => {
-  try {
-    const allPokemon = await Pokemon.find({ user_id: req.session.user.id });
-
-    res.render("main", { allPokemon });
-  } catch (error) {
-    console.log(error);
-  }
-});
-
 module.exports = router;

@@ -33,7 +33,7 @@ const indexRoutes = require("./routes");
 app.use("/", indexRoutes);
 
 const pokemonRoutes = require("./routes/pokemon.routes");
-app.use("/pokemon", isLoggedIn, pokemonRoutes);
+app.use("/pokemon", pokemonRoutes);
 
 // auth needs to be added so paste the following lines:
 const auth = require("./routes/auth.routes");
