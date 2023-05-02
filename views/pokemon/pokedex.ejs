@@ -1,15 +1,27 @@
-<h1>Pokedex</h1>
+<h1 class="row justify-content-center mt-3">Pokedex</h1>
 
-<% allPokemon.forEach(pokemon => { %>
-<div>
-  <h2><%- pokemon.name %></h2>
-  <img width="200px" src="<%= pokemon.img %> " alt="" />
-  <a href="/pokemon/<%= pokemon._id %>">More Info</a>
-  <% if (user) { %> <% if (user.id == pokemon.user_id._id) { %>
-  <a href="/pokemon/update/<%= pokemon._id %>">Update</a>
-  <form method="POST" action="/pokemon/delete/<%= pokemon._id %>">
-    <button type="submit">Delete</button>
-  </form>
-  <% } %> <% } %>
+<div class="pokedex-list">
+  <% allPokemon.forEach(pokemon => { %>
+  <div class="pokemon-card shadow p-3 mb-5 bg-body rounded">
+    <img width="250px" height="250px" src="<%= pokemon.img %> " alt="" />
+    <div class="pokemon-card-info">
+      <h2><%- pokemon.name %></h2>
+      <div class="pokemon-card-buttons">
+        <a class="btn btn-secondary btn-sm" href="/pokemon/<%= pokemon._id %>"
+          >More Info</a
+        >
+        <% if (user) { %> <% if (user.id == pokemon.user_id._id) { %>
+        <a
+          class="btn btn-success btn-sm"
+          href="/pokemon/update/<%= pokemon._id %>"
+          >Update</a
+        >
+        <form method="POST" action="/pokemon/delete/<%= pokemon._id %>">
+          <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+        </form>
+        <% } %> <% } %>
+      </div>
+    </div>
+  </div>
+  <% }) %>
 </div>
-<% }) %>

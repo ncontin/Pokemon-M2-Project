@@ -11,7 +11,6 @@
       integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="/stylesheets/reset.css" />
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
 
@@ -23,7 +22,7 @@
             <!-- hidden spacer to center brand on mobile --></span
           >
           <a class="navbar-brand" href="/">
-            <img src="/images/pokemon-logo.png" alt="" width="150px" />
+            <img src="/images/pokemon-logo.png" alt="" height="40px" />
           </a>
           <div class="w-100 text-right">
             <button
@@ -41,7 +40,6 @@
           id="myNavbar7"
         >
           <div class="navbar-nav ms-auto flex-nowrap">
-            <a href="/pokemon/pokedex" class="nav-link">Pokedex</a>
             <% if(path !== "/") { %> <% if(!user) { %>
             <a href="/auth/login" class="nav-link">Login</a>
             <a href="/auth/signup" class="nav-link">Sign Up</a>
@@ -49,7 +47,6 @@
             <a href="/main" class="nav-link">Main</a>
             <a href="/private" class="nav-link">Private</a>
             <a href="/pokemon/pokedex" class="nav-link">Pokedex</a>
-            <a href="/pokemon/memorygame" class="nav-link">Memory Game</a>
             <form method="POST" action="/logout">
               <button class="nav-link" type="submit">Logout</button>
             </form>

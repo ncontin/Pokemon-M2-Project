@@ -48,10 +48,20 @@ h1 {
     transform: rotate(359deg);
   }
 }
-
-/* body {
-  background-image: url("/images/Pikachu-Wallpaper.jpg");
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-} */
+.pokedex-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+.pokemon-card {
+  margin: 20px;
+  padding: 10px;
+}
+.pokemon-card-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+.pokemon-card-info h2 {
+  margin: 10px 0;
+  font-weight: bold;
+  font-size: 18px;
+}

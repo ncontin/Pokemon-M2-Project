@@ -8,28 +8,33 @@ router.get("/create", isLoggedIn, (req, res, next) => {
   res.render("pokemon/create", { user: req.session.user });
 });
 
-router.post("/create", isLoggedIn, fileUploader.single("url"), async (req, res, next) => {
-  try {
-    const object = {
-      name: req.body.name,
-      /* img: req.body.url, */
-      img: req.file.path,
-      type: req.body.type,
-      ability: req.body.ability,
-      user_id: req.session.user.id,
-    };
-    const newPokemon = await Pokemon.create(object);
-    /* console.log(newPokemon); */
-    res.render("pokemon/create", {
-      user: req.session.user,
-      message: "Pokemon added successfully!",
-    });
-  } catch (error) {
-    // Handle any errors that occur
-    console.error(error);
-    next(error);
+router.post(
+  "/create",
+  isLoggedIn,
+  fileUploader.single("url"),
+  async (req, res, next) => {
+    try {
+      const object = {
+        name: req.body.name,
+        /* img: req.body.url, */
+        img: req.file.path,
+        type: req.body.type,
+        ability: req.body.ability,
+        user_id: req.session.user.id,
+      };
+      const newPokemon = await Pokemon.create(object);
+      /* console.log(newPokemon); */
+      res.render("pokemon/create", {
+        user: req.session.user,
+        message: "Pokemon added successfully!",
+      });
+    } catch (error) {
+      // Handle any errors that occur
+      console.error(error);
+      next(error);
+    }
   }
-});
+);
 
 router.get("/pokedex", async (req, res) => {
   try {
@@ -41,18 +46,11 @@ router.get("/pokedex", async (req, res) => {
   }
 });
 
-router.get("/memorygame", async (req, res) => {
-  try {
-    const allPokemon = await Pokemon.find();
-    res.render("pokemon/memorygame", { allPokemon });
-  } catch (error) {
-    console.log(error);
-  }
-});
-
 router.get("/:pokemonId", isLoggedIn, async (req, res, next) => {
   try {
-    const pokemon = await Pokemon.findById(req.params.pokemonId).populate("user_id");
+    const pokemon = await Pokemon.findById(req.params.pokemonId).populate(
+      "user_id"
+    );
     console.log(pokemon);
     res.render("pokemon/one", { user: req.session.user, pokemon });
   } catch (error) {
@@ -69,21 +67,30 @@ router.get("/update/:pokemonId", isLoggedIn, async (req, res, next) => {
     console.log(error);
   }
 });
-router.post("/update/:pokemonId", isLoggedIn, fileUploader.single("url"), async (req, res, next) => {
-  try {
-    const object = {
-      name: req.body.name,
-      img: req.file.path,
-      type: req.body.type,
-      ability: req.body.ability,
-    };
-    const pokemon = await Pokemon.findByIdAndUpdate(req.params.pokemonId, object, { new: true });
-    console.log(pokemon);
-    res.redirect("/pokemon/" + req.params.pokemonId);
-  } catch (error) {
-    console.log(error);
+router.post(
+  "/update/:pokemonId",
+  isLoggedIn,
+  fileUploader.single("url"),
+  async (req, res, next) => {
+    try {
+      const object = {
+        name: req.body.name,
+        img: req.file.path,
+        type: req.body.type,
+        ability: req.body.ability,
+      };
+      const pokemon = await Pokemon.findByIdAndUpdate(
+        req.params.pokemonId,
+        object,
+        { new: true }
+      );
+      console.log(pokemon);
+      res.redirect("/pokemon/" + req.params.pokemonId);
+    } catch (error) {
+      console.log(error);
+    }
   }
-});
+);
 
 router.post("/delete/:pokemonId/", async (req, res) => {
   try {

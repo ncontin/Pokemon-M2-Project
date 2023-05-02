@@ -1,39 +1,66 @@
-<h1>Create</h1>
-
-<div>
-  <div>
-    <h1>Update a Pokemon</h1>
-    <div>
-      <form action="/pokemon/update/<%- pokemon._id %>" method="POST" enctype="multipart/form-data">
+<div class="create-wrapper d-flex flex-column justify-content-center">
+  <div class="row justify-content-center align-items-center">
+    <h1 class="col-3">Update Pokemon</h1>
+  </div>
+  <div class="row justify-content-center align-items-center mt-5">
+    <div class="col-3">
+      <form
+        action="/pokemon/update/<%- pokemon._id %>"
+        method="POST"
+        enctype="multipart/form-data"
+      >
         <div>
-          <label for="name">POKEMON</label
-          ><input type="text" name="name" placeholder="Name of pokemon" value="<%- pokemon.name %>" />
+          <label class="form-label" for="name">POKEMON</label>
+          <input
+            class="form-control"
+            type="text"
+            name="name"
+            placeholder="Name of pokemon"
+            value="<%- pokemon.name %>"
+          />
         </div>
 
         <div>
-          <label for="url">IMG</label>
-          <input type="file" name="url" placeholder="url of img" value="<%- pokemon.img %>" />
+          <label class="form-label" for="url">IMG</label>
+          <input
+            class="form-control"
+            type="file"
+            name="url"
+            placeholder="url of img"
+            value="<%- pokemon.img %>"
+          />
         </div>
 
         <div>
-          <label for="type">TYPE</label>
-          <select name="type" value="<%- pokemon.type %>">
-            <% [ "Bug", "Dark", "Dragon", "Electric", "Fairy", "Fighting", "Fire", "Flying", "Ghost", "Grass", "Ground",
-            "Ice", "Normal", "Poison", "Psychic", "Rock", "Steel", "Water" ].forEach(element => { %>
+          <label class="form-label" for="type">TYPE</label>
+          <select class="form-control" name="type" value="<%- pokemon.type %>">
+            <% [ "Bug", "Dark", "Dragon", "Electric", "Fairy", "Fighting",
+            "Fire", "Flying", "Ghost", "Grass", "Ground", "Ice", "Normal",
+            "Poison", "Psychic", "Rock", "Steel", "Water" ].forEach(element => {
+            %>
             <option value="<%- element %>"><%- element %></option>
 
             <% }) %>
           </select>
 
           <div>
-            <label for="ability">ABILITY </label
-            ><input type="text" name="ability" placeholder="ability" value="<%- pokemon.ability %>" />
+            <label class="form-label" for="ability">ABILITY</label>
+            <input
+              class="form-control"
+              type="text"
+              name="ability"
+              placeholder="ability"
+              required
+              value="<%- pokemon.ability %>"
+            />
           </div>
         </div>
-        <div><input type="submit" value="Update POKEMON" /></div>
+        <div class="row justify-content-center mt-3">
+          <button class="btn btn-outline-dark mt-3 col-5" type="submit">
+            Update Pokemon
+          </button>
+        </div>
       </form>
-      <a href="/pokemon/pokedex">Pokedex</a>
-      <a href="/main">Go Back</a>
     </div>
   </div>
 </div>
