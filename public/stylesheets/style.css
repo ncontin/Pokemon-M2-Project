@@ -1,9 +1,5 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  height: 100%;
-}
-html {
-  height: 100%;
 }
 
 a {
@@ -13,10 +9,34 @@ a {
 h1 {
   color: 15px;
 }
-.mainbody {
-  background-color: white;
-  height: 100%;
+.login-wrapper {
+  height: 100vh;
+  background-image: url(../images/pikabg.jpeg);
+  background-size: cover;
 }
+.signup-wrapper {
+  height: 100vh;
+  background-image: url(../images/signup3.webp);
+  background-size: 40vw;
+  background-repeat: no-repeat;
+  background-position-y: bottom;
+  background-position-x: right;
+}
+.create-wrapper {
+  height: 100vh;
+  background-size: cover;
+  background-image: url(../images/addpoki.jpeg);
+  background-repeat: no-repeat;
+}
+.main-wrapper {
+  height: 100vh;
+  background-image: url(../images/gottacatchmain.png);
+  background-size: 40vw;
+  background-repeat: no-repeat;
+  background-position-y: top;
+  background-position-x: center;
+}
+
 .rotate {
   animation: rotation 5s infinite linear;
 }

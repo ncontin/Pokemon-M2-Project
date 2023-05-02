@@ -41,6 +41,15 @@ router.get("/pokedex", async (req, res) => {
   }
 });
 
+router.get("/memorygame", async (req, res) => {
+  try {
+    const allPokemon = await Pokemon.find();
+    res.render("pokemon/memorygame", { allPokemon });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 router.get("/:pokemonId", isLoggedIn, async (req, res, next) => {
   try {
     const pokemon = await Pokemon.findById(req.params.pokemonId).populate("user_id");
@@ -84,4 +93,5 @@ router.post("/delete/:pokemonId/", async (req, res) => {
     console.log(error);
   }
 });
+
 module.exports = router;

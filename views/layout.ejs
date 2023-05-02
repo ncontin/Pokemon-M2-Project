@@ -19,24 +19,37 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="container-fluid">
         <div class="d-flex flex-grow-1">
-          <span class="w-100 d-lg-none d-block"> <!-- hidden spacer to center brand on mobile --></span>
-          <a class="navbar-brand" href="/"> <img src="/images/pokemon-logo.png" alt="" width="150px" /> </a>
+          <span class="w-100 d-lg-none d-block">
+            <!-- hidden spacer to center brand on mobile --></span
+          >
+          <a class="navbar-brand" href="/">
+            <img src="/images/pokemon-logo.png" alt="" width="150px" />
+          </a>
           <div class="w-100 text-right">
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#myNavbar7">
+            <button
+              class="navbar-toggler"
+              type="button"
+              data-bs-toggle="collapse"
+              data-bs-target="#myNavbar7"
+            >
               <span class="navbar-toggler-icon"></span>
             </button>
           </div>
         </div>
-        <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar7">
+        <div
+          class="collapse navbar-collapse flex-grow-1 text-right"
+          id="myNavbar7"
+        >
           <div class="navbar-nav ms-auto flex-nowrap">
             <a href="/pokemon/pokedex" class="nav-link">Pokedex</a>
             <% if(path !== "/") { %> <% if(!user) { %>
             <a href="/auth/login" class="nav-link">Login</a>
             <a href="/auth/signup" class="nav-link">Sign Up</a>
             <% } else { %>
-            <a href="/main" class="nav-link">Profile</a>
-            <a href="/pokemon/create" class="nav-link">New Pokemon</a>
-
+            <a href="/main" class="nav-link">Main</a>
+            <a href="/private" class="nav-link">Private</a>
+            <a href="/pokemon/pokedex" class="nav-link">Pokedex</a>
+            <a href="/pokemon/memorygame" class="nav-link">Memory Game</a>
             <form method="POST" action="/logout">
               <button class="nav-link" type="submit">Logout</button>
             </form>
