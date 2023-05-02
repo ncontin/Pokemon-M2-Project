@@ -1,22 +1,41 @@
 body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-  height: 100%;
-}
-html {
-  height: 100%;
+  /* css variable */
+  --bg-height: calc(100vh - 66px);
 }
 
 a {
   color: #00b7ff;
 }
 
-h1 {
-  color: 15px;
+.login-wrapper {
+  height: var(--bg-height);
+  background-image: url(../images/pikabg.jpeg);
+  background-size: cover;
 }
-.mainbody {
-  background-color: white;
-  height: 100%;
+.signup-wrapper {
+  height: var(--bg-height);
+  background-image: url(../images/signup3.webp);
+  background-size: 40vw;
+  background-repeat: no-repeat;
+  background-position-y: bottom;
+  background-position-x: right;
 }
+.create-wrapper {
+  height: var(--bg-height);
+  background-size: cover;
+  background-image: url(../images/addpoki.jpeg);
+  background-repeat: no-repeat;
+}
+.main-wrapper {
+  height: var(--bg-height);
+  background-image: url(../images/gottacatchmain.png);
+  background-size: 40vw;
+  background-repeat: no-repeat;
+  background-position-y: top;
+  background-position-x: center;
+}
+
 .rotate {
   animation: rotation 5s infinite linear;
 }
@@ -28,10 +47,25 @@ h1 {
     transform: rotate(359deg);
   }
 }
-
-/* body {
-  background-image: url("/images/Pikachu-Wallpaper.jpg");
-  background-position: center;
-  background-size: contain;
-  background-repeat: no-repeat;
-} */
+.pokedex-list {
+  display: flex;
+  flex-wrap: wrap;
+}
+.pokemon-card {
+  margin: 20px;
+  padding: 10px;
+  transition-duration: 0.3s;
+  transition-property: transform;
+}
+.pokemon-card:hover {
+  transform: scale(1.1);
+}
+.pokemon-card-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+.pokemon-card-info h2 {
+  margin: 10px 0;
+  font-weight: bold;
+  font-size: 18px;
+}
