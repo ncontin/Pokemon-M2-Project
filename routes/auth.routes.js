@@ -3,7 +3,8 @@ const User = require("../models/User.model");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
 
-const pwdRegex = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/;
+const pwdRegex = /.*/;
+//replace pwdRegex with this for pwd requirements /* /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/; */
 
 /* GET to display a signup form */
 router.get("/signup", (req, res, next) => {
@@ -49,7 +50,7 @@ router.post("/login", async (req, res, next) => {
     if (!!user) {
       if (bcrypt.compareSync(req.body.password, user.password)) {
         // If password is correct
-        req.session.user = { username: user.username };
+        req.session.user = { username: user.username, id: user._id };
         console.log("Successful log in");
         res.redirect("main");
       } else {

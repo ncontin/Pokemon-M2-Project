@@ -1,13 +1,15 @@
 <h1>Pokedex</h1>
-<a class="btn btn-success" href="/pokemon/create">Create a new Pokemon</a>
+
 <% allPokemon.forEach(pokemon => { %>
 <div>
   <h2><%- pokemon.name %></h2>
   <img width="200px" src="<%= pokemon.img %> " alt="" />
   <a href="/pokemon/<%= pokemon._id %>">More Info</a>
+  <% if (user) { %> <% if (user.id == pokemon.user_id._id) { %>
   <a href="/pokemon/update/<%= pokemon._id %>">Update</a>
   <form method="POST" action="/pokemon/delete/<%= pokemon._id %>">
     <button type="submit">Delete</button>
   </form>
+  <% } %> <% } %>
 </div>
 <% }) %>

@@ -1,5 +1,6 @@
 const express = require("express");
 const Pokemon = require("../models/Pokemon.model");
+const User = require("../models/User.model");
 const router = express.Router();
 const fileUploader = require("../config/cloudinary.config");
 const { isLoggedIn } = require("../middleware/route-guard");
@@ -8,32 +9,26 @@ router.get("/create", isLoggedIn, (req, res, next) => {
   res.render("pokemon/create", { user: req.session.user });
 });
 
-router.post(
-  "/create",
-  isLoggedIn,
-  fileUploader.single("url"),
-  async (req, res, next) => {
-    try {
-      const object = {
-        name: req.body.name,
-        /* img: req.body.url, */
-        img: req.file.path,
-        type: req.body.type,
-        ability: req.body.ability,
-      };
-      const newPokemon = await Pokemon.create(object);
-      /* console.log(newPokemon); */
-      res.render("pokemon/create", {
-        user: req.session.user,
-        message: "Pokemon added successfully!",
-      });
-    } catch (error) {
-      // Handle any errors that occur
-      console.error(error);
-      next(error);
-    }
+router.post("/create", isLoggedIn, fileUploader.single("url"), async (req, res, next) => {
+  try {
+    const object = {
+      name: req.body.name,
+      img: req.file.path,
+      type: req.body.type,
+      ability: req.body.ability,
+      user_id: req.session.user.id,
+    };
+    const newPokemon = await Pokemon.create(object);
+    /* console.log(newPokemon); */
+    res.render("pokemon/create", {
+      user: req.session.user,
+      message: "Pokemon added successfully!",
+    });
+  } catch (error) {
+    console.error(error);
+    next(error);
   }
-);
+});
 
 router.get("/pokedex", async (req, res) => {
   try {
@@ -47,7 +42,7 @@ router.get("/pokedex", async (req, res) => {
 
 router.get("/:pokemonId", isLoggedIn, async (req, res, next) => {
   try {
-    const pokemon = await Pokemon.findById(req.params.pokemonId);
+    const pokemon = await Pokemon.findById(req.params.pokemonId).populate("user_id");
     console.log(pokemon);
     res.render("pokemon/one", { user: req.session.user, pokemon });
   } catch (error) {
@@ -72,11 +67,7 @@ router.post("/update/:pokemonId", isLoggedIn, async (req, res, next) => {
       type: req.body.type,
       ability: req.body.ability,
     };
-    const pokemon = await Pokemon.findByIdAndUpdate(
-      req.params.pokemonId,
-      object,
-      { new: true }
-    );
+    const pokemon = await Pokemon.findByIdAndUpdate(req.params.pokemonId, object, { new: true });
     console.log(pokemon);
     res.redirect("/pokemon/pokedex");
   } catch (error) {

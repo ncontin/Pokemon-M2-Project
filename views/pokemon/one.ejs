@@ -3,5 +3,9 @@
   <img src="<%- pokemon.img %> " alt="" />
   <p><%- pokemon.type %></p>
   <p><%- pokemon.ability %></p>
+  <p>Created by: <%- pokemon.user_id.username %></p>
+  <% if (user) { %> <% if (user.id == pokemon.user_id._id) { %>
+  <a href="/pokemon/update/<%= pokemon._id %>">Update</a>
+  <a href="/pokemon/delete/<%= pokemon._id %>">Delete</a>
+  <% } %> <% } %>
 </div>
-

@@ -1,5 +1,7 @@
 const router = require("express").Router();
 const { isLoggedIn } = require("../middleware/route-guard");
+const User = require("../models/User.model");
+const Pokemon = require("../models/Pokemon.model");
 
 //* GET home page */
 router.get("/", (req, res, next) => {
@@ -9,11 +11,11 @@ router.get("/", (req, res, next) => {
   res.render("index");
 });
 
-router.get("/main", isLoggedIn, (req, res, next) => {
+/* router.get("/main", isLoggedIn, (req, res, next) => {
   console.log(req.session);
   //render view and user is coming from req.session.user
   res.render("main", { user: req.session.user });
-});
+}); */
 
 router.get("/private", isLoggedIn, (req, res, next) => {
   console.log(req.session);
@@ -26,6 +28,28 @@ router.post("/logout", (req, res, next) => {
     if (err) next(err);
     res.redirect("/");
   });
+});
+
+router.get("/main", isLoggedIn, async (req, res) => {
+  try {
+    // find only the Pokemon that belong to the current user
+    const allPokemon = await Pokemon.find({ user_id: req.session.user.id });
+    /* console.log(allPokemon); */
+    // pass both the user and allPokemon variables to the main template
+    res.render("main", { user: req.session.user, allPokemon });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+router.get("/main", isLoggedIn, async (req, res) => {
+  try {
+    const allPokemon = await Pokemon.find({ user_id: req.session.user.id });
+
+    res.render("main", { allPokemon });
+  } catch (error) {
+    console.log(error);
+  }
 });
 
 module.exports = router;
