@@ -51,7 +51,7 @@ router.post("/login", async (req, res, next) => {
         // If password is correct
         req.session.user = { username: user.username };
         console.log("Successful log in");
-        res.redirect("/main");
+        res.redirect("main");
       } else {
         // If password is wrong
         res.render("auth/login", { errorMessage: "Wrong password" });
