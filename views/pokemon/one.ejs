@@ -1,11 +1,5 @@
 <div class="pokemon-card shadow p-3 mb-5 bg-body rounded d-flex flex-row">
-  <img
-    width="250px"
-    height="250px"
-    src="<%= pokemon.img %> "
-    alt=""
-    class="me-5"
-  />
+  <img width="250px" height="250px" src="<%= pokemon.img %> " alt="" class="me-5" />
   <div class="pokemon-card-info">
     <h2><%- pokemon.name %></h2>
     <p>Type: <%- pokemon.type %></p>
@@ -13,11 +7,7 @@
     <p>Created by: <%- pokemon.user_id.username %></p>
     <% if (user) { %> <% if (user.id == pokemon.user_id._id) { %>
     <div class="pokemon-card-buttons">
-      <a
-        class="btn btn-success btn-sm me-3"
-        href="/pokemon/update/<%= pokemon._id %>"
-        >Update</a
-      >
+      <a class="btn btn-success btn-sm me-3" href="/pokemon/update/<%= pokemon._id %>">Update</a>
       <form method="POST" action="/pokemon/delete/<%= pokemon._id %>">
         <button class="btn btn-danger btn-sm" type="submit">Delete</button>
       </form>
@@ -26,23 +16,17 @@
   </div>
 </div>
 
-
-
-
-
-<!-- <h2>Comments</h2>
+<h2>Comments</h2>
 <ul>
   <% pokemon.comments.forEach((comment) => { %>
   <li>
-    <p><%= comment.content %></p>
-    <p>By <%= comment.author %> on <%= comment.date %></p>
+    <p><%- comment.content %></p>
   </li>
   <% }); %>
 </ul>
-<form action="/pokemon/<%= pokemon._id %>/comments" method="POST">
-  <label for="content">Content:</label>
-  <input type="text" name="content" id="content" required />
-  <label for="author">Author:</label>
-  <input type="text" name="author" id="author" value="<%= user ? user.username : '' %>" required />
-  <button type="submit">Submit Comment</button>
-</form> -->
+<form action="/pokemon/<%= pokemon._id %>" method="POST">
+  <textarea class="form-control" name="content" placeholder="Comment"></textarea>
+  <div class="text-right">
+    <button type="submit" class="btn btn-primary">Save</button>
+  </div>
+</form>
