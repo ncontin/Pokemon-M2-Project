@@ -1,9 +1,7 @@
 <div class="row justify-content-center align-items-center main-wrapper">
   <!-- <h1>Profile page</h1> -->
-  <h2 class="row justify-content-center mt-5">Hello <%= user.username %></h2>
-  <h1>Profile page</h1>
-  <h2>Hello <%= user.username %></h2>
-  <h3>Created Pokemon</h3>
+  <h2 class="row justify-content-center mt-5 hello-main">Hello <%= user.username %></h2>
+
   <% allPokemon.forEach(pokemon => { %>
   <div>
     <h2><%- pokemon.name %></h2>
@@ -16,3 +14,6 @@
   </div>
   <% }) %>
 </div>
+
+
+

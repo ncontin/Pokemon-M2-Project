@@ -56,19 +56,17 @@ router.get("/pokedex", async (req, res) => {
   }
 });
 
-/* router.get("/:pokemonId", isLoggedIn, async (req, res, next) => {
-  try {
-    const pokemon = await Pokemon.findById(req.params.pokemonId).populate("user_id");
-    console.log(pokemon);
-    res.render("pokemon/one", { user: req.session.user, pokemon });
-  } catch (error) {
-    console.log(error);
-  }
-}); */
-
 router.get("/:pokemonId", isLoggedIn, async (req, res, next) => {
   try {
-    const pokemon = await Pokemon.findById(req.params.pokemonId).populate("comments");
+    const pokemon = await Pokemon.findById(req.params.pokemonId)
+      .populate({
+        path: "comments",
+        populate: {
+          path: "user_id",
+          select: "_id username",
+        },
+      })
+      .populate("user_id");
 
     console.log(pokemon);
     res.render("pokemon/one", { user: req.session.user, pokemon });
@@ -76,6 +74,10 @@ router.get("/:pokemonId", isLoggedIn, async (req, res, next) => {
     console.log(error);
   }
 });
+
+/*  path: "comments",
+        select: "content user_id",
+        select: "date", */
 
 router.get("/update/:pokemonId", isLoggedIn, async (req, res, next) => {
   try {
@@ -122,7 +124,7 @@ router.post("/:pokemonId", isLoggedIn, async (req, res) => {
       user_id: req.session.user.id,
     });
     const pokemon = await Pokemon.findById(req.params.pokemonId);
-    pokemon.comments.push(comment);
+    pokemon.comments.unshift(comment);
     await pokemon.save();
     /* console.log(comment); */
 

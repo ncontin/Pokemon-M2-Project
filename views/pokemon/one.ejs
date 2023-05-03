@@ -5,7 +5,9 @@
     <p>Type: <%- pokemon.type %></p>
     <p>Ability: <%- pokemon.ability %></p>
     <p>Created by: <%- pokemon.user_id.username %></p>
+
     <% if (user) { %> <% if (user.id == pokemon.user_id._id) { %>
+
     <div class="pokemon-card-buttons">
       <a class="btn btn-success btn-sm me-3" href="/pokemon/update/<%= pokemon._id %>">Update</a>
       <form method="POST" action="/pokemon/delete/<%= pokemon._id %>">
@@ -17,16 +19,19 @@
 </div>
 
 <h2>Comments</h2>
-<ul>
-  <% pokemon.comments.forEach((comment) => { %>
-  <li>
-    <p><%- comment.content %></p>
-  </li>
-  <% }); %>
-</ul>
+
 <form action="/pokemon/<%= pokemon._id %>" method="POST">
   <textarea class="form-control" name="content" placeholder="Comment"></textarea>
   <div class="text-right">
     <button type="submit" class="btn btn-primary">Save</button>
   </div>
 </form>
+<ul>
+  <% pokemon.comments.forEach((comment) => { %>
+  <li>
+    <p><%- comment.content %></p>
+  </li>
+  <p><%- comment.user_id.username%></p>
+  <p><%- comment.date %></p>
+  <% }); %>
+</ul>
