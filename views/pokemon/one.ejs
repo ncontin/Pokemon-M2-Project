@@ -1,15 +1,29 @@
-<div>
-  <h2><%- pokemon.name %></h2>
-  <img src="<%- pokemon.img %> " alt="" />
-  <p><%- pokemon.type %></p>
-  <p><%- pokemon.ability %></p>
-  <p>Created by: <%- pokemon.user_id.username %></p>
-  <% if (user) { %> <% if (user.id == pokemon.user_id._id) { %>
-  <a href="/pokemon/update/<%= pokemon._id %>">Update</a>
-  <form method="POST" action="/pokemon/delete/<%= pokemon._id %>">
-    <button type="submit">Delete</button>
-  </form>
-  <% } %> <% } %>
+<div class="pokemon-card shadow p-3 mb-5 bg-body rounded d-flex flex-row">
+  <img
+    width="250px"
+    height="250px"
+    src="<%= pokemon.img %> "
+    alt=""
+    class="me-5"
+  />
+  <div class="pokemon-card-info">
+    <h2><%- pokemon.name %></h2>
+    <p>Type: <%- pokemon.type %></p>
+    <p>Ability: <%- pokemon.ability %></p>
+    <p>Created by: <%- pokemon.user_id.username %></p>
+    <% if (user) { %> <% if (user.id == pokemon.user_id._id) { %>
+    <div class="pokemon-card-buttons">
+      <a
+        class="btn btn-success btn-sm me-3"
+        href="/pokemon/update/<%= pokemon._id %>"
+        >Update</a
+      >
+      <form method="POST" action="/pokemon/delete/<%= pokemon._id %>">
+        <button class="btn btn-danger btn-sm" type="submit">Delete</button>
+      </form>
+    </div>
+    <% } %> <% } %>
+  </div>
 </div>
 
 <h2>Comments</h2>
