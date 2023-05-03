@@ -44,9 +44,11 @@ router.get("/pokedex", async (req, res) => {
       res.render("pokemon/pokedex", { allPokemon });
     } else {
       const nameRegex = new RegExp(req.query.pokemon, "i");
+      const typeRegex = new RegExp(req.query.type, "i");
+      console.log(nameRegex, req.query.type);
       const allPokemon = await Pokemon.find({
         name: nameRegex,
-        type: req.query.type,
+        type: typeRegex,
       });
       /* console.log(allPokemon); */
       res.render("pokemon/pokedex", { allPokemon });
