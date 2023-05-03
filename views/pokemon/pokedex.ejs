@@ -2,7 +2,7 @@
 
 <div class="pokedex-list">
   <% allPokemon.forEach(pokemon => { %>
-  <div class="pokemon-card shadow p-3 mb-5 bg-body rounded">
+  <div class="pokemon-card shadow p-3 mb-5 bg-body rounded animation">
     <img width="250px" height="250px" src="<%= pokemon.img %> " alt="" />
     <div class="pokemon-card-info">
       <h2><%- pokemon.name %></h2>
@@ -27,12 +27,11 @@
 </div>
 <form class="row g-3">
   <div class="col-auto">
-    <label for="inputPassword2" class="visually-hidden">Pokemon</label>
     <input
-      type="pokemon"
+      type="text"
       class="form-control"
-      id="inputPassword2"
-      placeholder="Password"
+      name="pokemon"
+      placeholder="Pokemon"
     />
   </div>
   <div class="col-auto">
