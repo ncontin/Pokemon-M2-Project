@@ -11,3 +11,20 @@
   </form>
   <% } %> <% } %>
 </div>
+
+<h2>Comments</h2>
+<ul>
+  <% pokemon.comments.forEach((comment) => { %>
+  <li>
+    <p><%= comment.content %></p>
+    <p>By <%= comment.author %> on <%= comment.date %></p>
+  </li>
+  <% }); %>
+</ul>
+<form action="/pokemon/<%= pokemon._id %>/comments" method="POST">
+  <label for="content">Content:</label>
+  <input type="text" name="content" id="content" required />
+  <label for="author">Author:</label>
+  <input type="text" name="author" id="author" value="<%= user ? user.username : '' %>" required />
+  <button type="submit">Submit Comment</button>
+</form>

@@ -1,6 +1,8 @@
 const express = require("express");
 const Pokemon = require("../models/Pokemon.model");
 const router = express.Router();
+const Comment = require("../models/Comment.model");
+
 const fileUploader = require("../config/cloudinary.config");
 const { isLoggedIn } = require("../middleware/route-guard");
 
@@ -69,14 +71,14 @@ router.post("/update/:pokemonId", isLoggedIn, fileUploader.single("url"), async 
       ability: req.body.ability,
     };
     const pokemon = await Pokemon.findByIdAndUpdate(req.params.pokemonId, object, { new: true });
-    console.log(pokemon);
+    /* console.log(pokemon); */
     res.redirect("/pokemon/" + req.params.pokemonId);
   } catch (error) {
     console.log(error);
   }
 });
 
-router.post("/delete/:pokemonId/", async (req, res) => {
+router.post("/delete/:pokemonId", isLoggedIn, async (req, res) => {
   try {
     await Pokemon.findByIdAndDelete(req.params.pokemonId);
     res.redirect("/pokemon/pokedex");
@@ -84,4 +86,39 @@ router.post("/delete/:pokemonId/", async (req, res) => {
     console.log(error);
   }
 });
+
+
+router.post("/:pokemonId/comments", isLoggedIn, async (req, res, next) => {
+  try {
+    const { pokemonId } = req.params;
+    const { content, author } = req.body;
+    const newComment = await Comment.create({
+      content,
+      author,
+      pokemon: pokemonId,
+    });
+    console.log(`new comment is: ${newComment}`);
+    console.log(req.body);
+
+    await Pokemon.updateOne({ _id: pokemonId }, { $push: { comments: newComment._id } });
+    res.redirect(`/pokemon/${pokemonId}`);
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+});
+
+
+router.get("/:pokemonId/comments", isLoggedIn, async (req, res, next) => {
+  try {
+    const { pokemonId } = req.params;
+    const pokemon = await Pokemon.findById(pokemonId).populate({ path: "comments" }).populate("user_id");
+    res.render("pokemon/comments", { user: req.session.user, pokemon, comments: pokemon.comments });
+  } catch (error) {
+    console.log(error);
+    next(error);
+  }
+});
+
+
 module.exports = router;

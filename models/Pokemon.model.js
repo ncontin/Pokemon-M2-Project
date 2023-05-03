@@ -42,6 +42,13 @@ const pokemonSchema = new Schema(
       ref: "User",
       required: true,
     },
+
+    comments: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Comment",
+      },
+    ],
   },
   {
     // this second object adds extra properties: `createdAt` and `updatedAt`

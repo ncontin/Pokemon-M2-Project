@@ -2,7 +2,7 @@ const router = require("express").Router();
 const { isLoggedIn } = require("../middleware/route-guard");
 const User = require("../models/User.model");
 const Pokemon = require("../models/Pokemon.model");
-
+const Comment = require("../models/Comment.model");
 //* GET home page */
 router.get("/", (req, res, next) => {
   if (req.session.user) {

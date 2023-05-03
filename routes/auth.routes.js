@@ -2,7 +2,7 @@ const express = require("express");
 const User = require("../models/User.model");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
-
+const Comment = require("../models/Comment.model");
 const pwdRegex = /.*/;
 //replace pwdRegex with this for pwd requirements /* /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d@$!%*#?&]{8,}$/; */
 
