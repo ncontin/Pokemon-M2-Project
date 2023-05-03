@@ -67,10 +67,13 @@ router.post("/update/:pokemonId", isLoggedIn, fileUploader.single("url"), async 
   try {
     const object = {
       name: req.body.name,
-      img: req.file.path,
+
       type: req.body.type,
       ability: req.body.ability,
     };
+    if (req.file) {
+      object.img = req.file.path;
+    }
     const pokemon = await Pokemon.findByIdAndUpdate(req.params.pokemonId, object, { new: true });
     /* console.log(pokemon); */
     res.redirect("/pokemon/" + req.params.pokemonId);
