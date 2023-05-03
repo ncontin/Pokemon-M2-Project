@@ -1,8 +1,37 @@
 <h1 class="row justify-content-center mt-3">Pokedex</h1>
+<div class="row filter-wrapper">
+  <form class="form-inline">
+    <div class="row">
+      <div class="col-2">
+        <input
+          type="text"
+          class="form-control"
+          name="pokemon"
+          placeholder="Pokemon Name"
+        />
+      </div>
+      <div class="col-2">
+        <select class="form-control" name="type">
+          <option value="">Select Type</option>
+          <% [ "Bug", "Dark", "Dragon", "Electric", "Fairy", "Fighting", "Fire",
+          "Flying", "Ghost", "Grass", "Ground", "Ice", "Normal", "Poison",
+          "Psychic", "Rock", "Steel", "Water" ].forEach(element => { %>
+          <option value="<%- element %>"><%- element %></option>
+
+          <% }) %>
+        </select>
+      </div>
+      <div class="col-2">
+        <button type="submit" class="btn btn-primary">Search</button>
+        <a href="/pokemon/pokedex" class="btn btn-danger">Reset</a>
+      </div>
+    </div>
+  </form>
+</div>
 
 <div class="pokedex-list">
   <% allPokemon.forEach(pokemon => { %>
-  <div class="pokemon-card shadow p-3 mb-5 bg-body rounded">
+  <div class="pokemon-card shadow p-3 mb-5 bg-body rounded animation">
     <img width="250px" height="250px" src="<%= pokemon.img %> " alt="" />
     <div class="pokemon-card-info">
       <h2><%- pokemon.name %></h2>
@@ -25,17 +54,3 @@
   </div>
   <% }) %>
 </div>
-<form class="row g-3">
-  <div class="col-auto">
-    <label for="inputPassword2" class="visually-hidden">Pokemon</label>
-    <input
-      type="pokemon"
-      class="form-control"
-      id="inputPassword2"
-      placeholder="Password"
-    />
-  </div>
-  <div class="col-auto">
-    <button type="submit" class="btn btn-primary mb-3">Search</button>
-  </div>
-</form>

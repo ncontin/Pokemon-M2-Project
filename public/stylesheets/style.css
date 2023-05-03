@@ -54,11 +54,13 @@ a {
 .pokemon-card {
   margin: 20px;
   padding: 10px;
+}
+.animation:hover {
+  transform: scale(1.1);
+}
+.animation {
   transition-duration: 0.3s;
   transition-property: transform;
-}
-.pokemon-card:hover {
-  transform: scale(1.1);
 }
 .pokemon-card-buttons {
   display: flex;
@@ -68,4 +70,7 @@ a {
   margin: 10px 0;
   font-weight: bold;
   font-size: 18px;
+}
+.filter-wrapper {
+  margin-left: 20px;
 }

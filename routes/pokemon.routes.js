@@ -36,9 +36,21 @@ router.post("/create", isLoggedIn, fileUploader.single("url"), async (req, res, 
 
 router.get("/pokedex", async (req, res) => {
   try {
-    const allPokemon = await Pokemon.find();
-    /* console.log(allPokemon); */
-    res.render("pokemon/pokedex", { allPokemon });
+    if (Object.keys(req.query).length === 0) {
+      const allPokemon = await Pokemon.find();
+      /* console.log(allPokemon); */
+      res.render("pokemon/pokedex", { allPokemon });
+    } else {
+      const nameRegex = new RegExp(req.query.pokemon, "i");
+      const typeRegex = new RegExp(req.query.type, "i");
+      console.log(nameRegex, req.query.type);
+      const allPokemon = await Pokemon.find({
+        name: nameRegex,
+        type: typeRegex,
+      });
+      /* console.log(allPokemon); */
+      res.render("pokemon/pokedex", { allPokemon });
+    }
   } catch (error) {
     console.log(error);
   }
