@@ -44,9 +44,20 @@ router.get("/pokedex", async (req, res) => {
   }
 });
 
-router.get("/:pokemonId", isLoggedIn, async (req, res, next) => {
+/* router.get("/:pokemonId", isLoggedIn, async (req, res, next) => {
   try {
     const pokemon = await Pokemon.findById(req.params.pokemonId).populate("user_id");
+    console.log(pokemon);
+    res.render("pokemon/one", { user: req.session.user, pokemon });
+  } catch (error) {
+    console.log(error);
+  }
+}); */
+
+router.get("/:pokemonId", isLoggedIn, async (req, res, next) => {
+  try {
+    const pokemon = await Pokemon.findById(req.params.pokemonId).populate("comments");
+
     console.log(pokemon);
     res.render("pokemon/one", { user: req.session.user, pokemon });
   } catch (error) {
@@ -104,16 +115,6 @@ router.post("/:pokemonId", isLoggedIn, async (req, res) => {
     /* console.log(comment); */
 
     res.redirect("/pokemon/" + req.params.pokemonId);
-  } catch (error) {
-    console.log(error);
-  }
-});
-
-router.get("/:pokemonId", isLoggedIn, async (req, res, next) => {
-  try {
-    const pokemon = await Pokemon.findById(req.params.pokemonId).populate("comments");
-    console.log(pokemon);
-    res.render("pokemon/one", { user: req.session.user, pokemon });
   } catch (error) {
     console.log(error);
   }
