@@ -56,9 +56,20 @@ router.get("/pokedex", async (req, res) => {
   }
 });
 
-router.get("/:pokemonId", isLoggedIn, async (req, res, next) => {
+/* router.get("/:pokemonId", isLoggedIn, async (req, res, next) => {
   try {
     const pokemon = await Pokemon.findById(req.params.pokemonId).populate("user_id");
+    console.log(pokemon);
+    res.render("pokemon/one", { user: req.session.user, pokemon });
+  } catch (error) {
+    console.log(error);
+  }
+}); */
+
+router.get("/:pokemonId", isLoggedIn, async (req, res, next) => {
+  try {
+    const pokemon = await Pokemon.findById(req.params.pokemonId).populate("comments");
+
     console.log(pokemon);
     res.render("pokemon/one", { user: req.session.user, pokemon });
   } catch (error) {
@@ -103,34 +114,21 @@ router.post("/delete/:pokemonId", isLoggedIn, async (req, res) => {
   }
 });
 
-router.post("/:pokemonId/comments", isLoggedIn, async (req, res, next) => {
+router.post("/:pokemonId", isLoggedIn, async (req, res) => {
   try {
-    const { pokemonId } = req.params;
-    const { content, author } = req.body;
-    const newComment = await Comment.create({
-      content,
-      author,
-      pokemon: pokemonId,
+    const comment = await Comment.create({
+      content: req.body.content,
+      pokemon: req.params.pokemonId,
+      user_id: req.session.user.id,
     });
-    console.log(`new comment is: ${newComment}`);
-    console.log(req.body);
+    const pokemon = await Pokemon.findById(req.params.pokemonId);
+    pokemon.comments.push(comment);
+    await pokemon.save();
+    /* console.log(comment); */
 
-    await Pokemon.updateOne({ _id: pokemonId }, { $push: { comments: newComment._id } });
-    res.redirect(`/pokemon/${pokemonId}`);
+    res.redirect("/pokemon/" + req.params.pokemonId);
   } catch (error) {
     console.log(error);
-    next(error);
-  }
-});
-
-router.get("/:pokemonId/comments", isLoggedIn, async (req, res, next) => {
-  try {
-    const { pokemonId } = req.params;
-    const pokemon = await Pokemon.findById(pokemonId).populate({ path: "comments" }).populate("user_id");
-    res.render("pokemon/comments", { user: req.session.user, pokemon, comments: pokemon.comments });
-  } catch (error) {
-    console.log(error);
-    next(error);
   }
 });
 

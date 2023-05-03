@@ -5,10 +5,7 @@ const commentSchema = new Schema({
     type: String,
     required: true,
   },
-  author: {
-    type: String,
-    required: true,
-  },
+
   date: {
     type: Date,
     default: Date.now,
@@ -16,6 +13,12 @@ const commentSchema = new Schema({
   pokemon: {
     type: Schema.Types.ObjectId,
     ref: "Pokemon",
+  },
+
+  user_id: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
   },
 });
 

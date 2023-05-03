@@ -6,7 +6,6 @@ const pokemonSchema = new Schema(
     img: String,
     type: [
       {
-        // One or two types of the Pokemon
         type: String,
         enum: [
           "Bug",
@@ -32,7 +31,6 @@ const pokemonSchema = new Schema(
       },
     ],
     ability: {
-      // One ability of the Pokemon
       type: String,
       required: true,
     },
