@@ -1,8 +1,18 @@
 <div class="row justify-content-center align-items-center main-wrapper">
   <!-- <h1>Profile page</h1> -->
   <h2 class="row justify-content-center mt-5">Hello <%= user.username %></h2>
-  <!-- <img
-    src="https://media1.popsugar-assets.com/files/thumbor/YX-2J4ndcYxiFDtqpJ0Ed8NkMfM/fit-in/2048xorig/filters:format_auto-!!-:strip_icc-!!-/2014/08/08/878/n/1922507/9ed5cdef48c5ef69_thumb_temp_image32304521407524949/i/Funny-Cat-GIFs.jpg"
-    alt="funny cat"
-  /> -->
+  <h1>Profile page</h1>
+  <h2>Hello <%= user.username %></h2>
+  <h3>Created Pokemon</h3>
+  <% allPokemon.forEach(pokemon => { %>
+  <div>
+    <h2><%- pokemon.name %></h2>
+    <img width="200px" src="<%= pokemon.img %> " alt="" />
+    <a href="/pokemon/<%= pokemon._id %>">More Info</a>
+    <a href="/pokemon/update/<%= pokemon._id %>">Update</a>
+    <form method="POST" action="/pokemon/delete/<%= pokemon._id %>">
+      <button type="submit">Delete</button>
+    </form>
+  </div>
+  <% }) %>
 </div>
