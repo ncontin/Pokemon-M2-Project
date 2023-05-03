@@ -38,9 +38,19 @@ router.post(
 
 router.get("/pokedex", async (req, res) => {
   try {
-    const allPokemon = await Pokemon.find();
-    /* console.log(allPokemon); */
-    res.render("pokemon/pokedex", { allPokemon });
+    if (Object.keys(req.query).length === 0) {
+      const allPokemon = await Pokemon.find();
+      /* console.log(allPokemon); */
+      res.render("pokemon/pokedex", { allPokemon });
+    } else {
+      const nameRegex = new RegExp(req.query.pokemon, "i");
+      const allPokemon = await Pokemon.find({
+        name: nameRegex,
+        type: req.query.type,
+      });
+      /* console.log(allPokemon); */
+      res.render("pokemon/pokedex", { allPokemon });
+    }
   } catch (error) {
     console.log(error);
   }
