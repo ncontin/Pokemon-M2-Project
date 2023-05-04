@@ -107,10 +107,23 @@ router.post("/update/:pokemonId", isLoggedIn, fileUploader.single("url"), async 
   }
 });
 
-router.post("/delete/:pokemonId", isLoggedIn, async (req, res) => {
+/* router.post("/delete/:pokemonId", isLoggedIn, async (req, res) => {
   try {
     await Pokemon.findByIdAndDelete(req.params.pokemonId);
     res.redirect("/pokemon/pokedex");
+  } catch (error) {
+    console.log(error);
+  }
+}); */
+
+router.post("/delete/:pokemonId", isLoggedIn, async (req, res) => {
+  try {
+    // Get the referer URL
+    const referer = req.get("referer");
+    // Delete the pokemon by id
+    await Pokemon.findByIdAndDelete(req.params.pokemonId);
+    // Redirect to the referer URL
+    res.redirect(referer);
   } catch (error) {
     console.log(error);
   }

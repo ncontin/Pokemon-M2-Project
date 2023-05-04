@@ -126,9 +126,19 @@ a {
   text-align: center;
 }
 
-.card-comment {
-  background-color: lightgray;
-  margin-bottom: 5px;
+.comment-item {
   list-style-type: none;
-  border: 2px solid red;
+}
+
+.comment-content {
+  background-color: black;
+}
+
+.li-comment {
+  font-size: 18px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.save-button {
+  margin-top: 5px;
 }
