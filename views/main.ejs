@@ -1,20 +1,8 @@
 <div class="row justify-content-center align-items-center main-wrapper">
-  <!-- <h1>Profile page</h1> -->
-  <h2 class="row justify-content-center mt-5 hello-main">Hello <%= user.username %></h2>
-  <div class="sub-hello-main">Here are your created Pokemon</div>
-  <!-- <div>
-  <% allPokemon.forEach(pokemon => { %>
   <div>
-    <h2><%- pokemon.name %></h2>
-    <img width="200px" src="<%= pokemon.img %> " alt="" />
-    <a href="/pokemon/<%= pokemon._id %>">More Info</a>
-    <a href="/pokemon/update/<%= pokemon._id %>">Update</a>
-    <form method="POST" action="/pokemon/delete/<%= pokemon._id %>">
-      <button type="submit">Delete</button>
-    </form>
+    <h2 class="row justify-content-center hello-main">Hello <%= user.username %></h2>
+    <div class="sub-hello-main">Here are your created Pokemon</div>
   </div>
-  <% }) %>
-</div> -->
 
   <div class="pokedex-list">
     <% allPokemon.forEach(pokemon => { %>
