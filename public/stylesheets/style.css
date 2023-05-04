@@ -2,8 +2,14 @@ body {
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
   /* css variable */
   --bg-height: calc(100vh - 66px);
+  font-family: "Darumadrop One", cursive;
+  font-size: 20px;
 }
 
+html {
+  font-family: "Darumadrop One", cursive;
+  font-size: 20px;
+}
 a {
   color: #00b7ff;
 }
@@ -15,11 +21,13 @@ a {
 }
 .signup-wrapper {
   height: var(--bg-height);
-  background-image: url(../images/signup3.webp);
+  /* background-image: url(../images/signup3.webp);
   background-size: 40vw;
   background-repeat: no-repeat;
   background-position-y: bottom;
-  background-position-x: right;
+  background-position-x: right; */
+  background-image: url(../images/pikabg.jpeg);
+  background-size: cover;
 }
 .create-wrapper {
   height: var(--bg-height);
@@ -29,11 +37,16 @@ a {
 }
 .main-wrapper {
   height: var(--bg-height);
-  background-image: url(../images/gottacatchmain.png);
-  background-size: 40vw;
+
+  /*  background-size: 40vw;
   background-repeat: no-repeat;
   background-position-y: top;
-  background-position-x: center;
+  background-position-x: center; */
+  background-image: url(../images/signup3.webp);
+  background-size: 40vw;
+  background-repeat: no-repeat;
+  background-position-y: bottom;
+  background-position-x: right;
 }
 
 .rotate {
@@ -65,11 +78,12 @@ a {
 .pokemon-card-buttons {
   display: flex;
   justify-content: space-between;
+  gap: 5px;
 }
 .pokemon-card-info h2 {
   margin: 10px 0;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 25px;
 }
 .filter-wrapper {
   margin-left: 20px;
@@ -77,4 +91,44 @@ a {
 
 .hello-main {
   font-size: 90px;
+}
+
+.sub-hello-main {
+  font-size: 2rem;
+  text-align: center;
+}
+
+.userpass {
+  font-weight: bolder;
+}
+
+.index-wrapper {
+  height: var(--bg-height);
+  background-image: url(../images/pikabg.jpeg);
+  background-size: cover;
+  padding-top: 5rem;
+}
+
+/* .log-sign-wrapper {
+  margin-top: -100px;
+}
+ */
+
+.nav-link {
+  color: white;
+}
+
+.login-signup-error {
+  text-align: center;
+}
+
+.error-404 {
+  text-align: center;
+}
+
+.card-comment {
+  background-color: lightgray;
+  margin-bottom: 5px;
+  list-style-type: none;
+  border: 2px solid red;
 }

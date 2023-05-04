@@ -2,7 +2,7 @@
   <div class="col-3">
     <form method="POST" action="/auth/signup">
       <div class="row">
-        <label class="form-label">Username:</label>
+        <label class="form-label userpass">Username:</label>
         <input
           class="form-control-lg"
           name="username"
@@ -10,22 +10,19 @@
           value="<% if (typeof errorMessage !== 'undefined') { %><%= data.username %><% } %>"
         />
       </div>
+
       <div class="row mt-3">
-        <label class="form-label">Password:</label>
-        <input
-          class="form-control-lg"
-          type="password"
-          name="password"
-          required
-        />
+        <label class="form-label userpass">Password:</label>
+        <input class="form-control-lg" type="password" name="password" required />
       </div>
       <div class="row justify-content-center mt-3">
         <button class="btn btn-outline-dark col-3" type="submit">SignUp</button>
       </div>
+      <div class="login-signup-error">
+        <% if (typeof errorMessage !== 'undefined') { %>
+        <p style="color: red"><%= errorMessage %></p>
+        <% } %>
+      </div>
     </form>
   </div>
 </div>
-
-<% if (typeof errorMessage !== 'undefined') { %>
-<p style="color: red"><%= errorMessage %></p>
-<% } %>

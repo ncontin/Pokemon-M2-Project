@@ -3,19 +3,13 @@
   <form class="form-inline">
     <div class="row">
       <div class="col-2">
-        <input
-          type="text"
-          class="form-control"
-          name="pokemon"
-          placeholder="Pokemon Name"
-        />
+        <input type="text" class="form-control" name="pokemon" placeholder="Pokemon Name" />
       </div>
       <div class="col-2">
         <select class="form-control" name="type">
           <option value="">Select Type</option>
-          <% [ "Bug", "Dark", "Dragon", "Electric", "Fairy", "Fighting", "Fire",
-          "Flying", "Ghost", "Grass", "Ground", "Ice", "Normal", "Poison",
-          "Psychic", "Rock", "Steel", "Water" ].forEach(element => { %>
+          <% [ "Bug", "Dark", "Dragon", "Electric", "Fairy", "Fighting", "Fire", "Flying", "Ghost", "Grass", "Ground",
+          "Ice", "Normal", "Poison", "Psychic", "Rock", "Steel", "Water" ].forEach(element => { %>
           <option value="<%- element %>"><%- element %></option>
 
           <% }) %>
@@ -36,15 +30,9 @@
     <div class="pokemon-card-info">
       <h2><%- pokemon.name %></h2>
       <div class="pokemon-card-buttons">
-        <a class="btn btn-secondary btn-sm" href="/pokemon/<%= pokemon._id %>"
-          >More Info</a
-        >
+        <a class="btn btn-secondary btn-sm" href="/pokemon/<%= pokemon._id %>">More Info</a>
         <% if (user) { %> <% if (user.id == pokemon.user_id._id) { %>
-        <a
-          class="btn btn-success btn-sm"
-          href="/pokemon/update/<%= pokemon._id %>"
-          >Update</a
-        >
+        <a class="btn btn-success btn-sm" href="/pokemon/update/<%= pokemon._id %>">Update</a>
         <form method="POST" action="/pokemon/delete/<%= pokemon._id %>">
           <button class="btn btn-danger btn-sm" type="submit">Delete</button>
         </form>

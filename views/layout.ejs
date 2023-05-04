@@ -11,6 +11,9 @@
       integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ"
       crossorigin="anonymous"
     />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Darumadrop+One&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="/stylesheets/style.css" />
   </head>
 
@@ -20,7 +23,7 @@
         <div class="d-flex flex-grow-1">
           <span class="w-100 d-lg-none d-block"> <!-- hidden spacer to center brand on mobile --></span>
           <a class="navbar-brand" href="/">
-            <img src="/images/pokemon-logo.png" alt="" height="40px" />
+            <img src="/images/pokemon-logo.png" alt="" height="40px" width="100px" />
           </a>
           <div class="w-100 text-right">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#myNavbar7">
@@ -30,15 +33,15 @@
         </div>
         <div class="collapse navbar-collapse flex-grow-1 text-right" id="myNavbar7">
           <div class="navbar-nav ms-auto flex-nowrap">
-            <a href="/pokemon/pokedex" class="nav-link">Pokedex</a>
+            <a href="/pokemon/pokedex" class="nav-link btn btn-outline-warning">Pokedex</a>
             <% if(path !== "/") { %> <% if(!user) { %>
-            <a href="/auth/login" class="nav-link">Login</a>
-            <a href="/auth/signup" class="nav-link">Sign Up</a>
+            <a href="/auth/login" class="nav-link btn btn-outline-danger">Login</a>
+            <a href="/auth/signup" class="nav-link btn btn-outline-info">Sign Up</a>
             <% } else { %>
-            <a href="/main" class="nav-link">Profile</a>
-            <a href="/pokemon/create" class="nav-link">New Pokemon</a>
+            <a href="/main" class="nav-link btn btn-outline-success">Profile</a>
+            <a href="/pokemon/create" class="nav-link btn btn-outline-primary">New Pokemon</a>
             <form method="POST" action="/logout">
-              <button class="nav-link" type="submit">Logout</button>
+              <button class="nav-link btn btn-outline-secondary" type="submit">Logout</button>
             </form>
             <% } %> <% } %>
           </div>

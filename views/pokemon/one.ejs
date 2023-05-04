@@ -26,12 +26,18 @@
     <button type="submit" class="btn btn-primary">Save</button>
   </div>
 </form>
-<ul>
-  <% pokemon.comments.forEach((comment) => { %>
-  <li>
-    <p><%- comment.content %></p>
-  </li>
-  <p><%- comment.user_id.username%></p>
-  <p><%- comment.date %></p>
-  <% }); %>
-</ul>
+
+<div>
+  <ul>
+    <div class="card-comment">
+      <% pokemon.comments.forEach((comment) => { %>
+      <li class="list-group-item">
+        <p><%- comment.content %></p>
+      </li>
+      <li>By: <%- comment.user_id.username%></li>
+      <li>On:<%- comment.date %></li>
+
+      <% }); %>
+    </div>
+  </ul>
+</div>
