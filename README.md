@@ -90,45 +90,104 @@ User profile:
 User model
  
 ```
-username: String
-password: String
+username: {
+    type: String,
+    unique: true,
+    required: true,
+    trim: true,
+  },
+  password: {
+    type: String,
+    required: true,
+  },
 ```
 
 Pokemon model
 
 ```
-name: String
-img: String
-type: Array
-ability: String
-user_id: Schema.Types.ObjectId
-comments: Schema.Types.ObjectId
+name: String,
+    img: String,
+    type: [
+      {
+        type: String,
+        enum: [
+          "Bug",
+          "Dark",
+          "Dragon",
+          "Electric",
+          "Fairy",
+          "Fighting",
+          "Fire",
+          "Flying",
+          "Ghost",
+          "Grass",
+          "Ground",
+          "Ice",
+          "Normal",
+          "Poison",
+          "Psychic",
+          "Rock",
+          "Steel",
+          "Water",
+        ],
+        required: true,
+      },
+    ],
+    ability: {
+      type: String,
+      required: true,
+    },
+
+    user_id: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+
+    comments: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Comment",
+      },
+    ],
 ``` 
 Comment model
 
-comment: String
-date: Date
-pokemon: Schema.Types.ObjectId
-user_id: Schema.Types.ObjectId
+``` 
+content: {
+    type: String,
+    required: true,
+  },
 
+  date: {
+    type: Date,
+    default: Date.now,
+  },
+  pokemon: {
+    type: Schema.Types.ObjectId,
+    ref: "Pokemon",
+  },
+
+  user_id: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
+``` 
 
 
 ## Links
 
 ### Trello
 
-[Link to your trello board](https://trello.com/b/wTNiF4AQ/pokemon-m2-project) or picture of your physical board
+[Link trello board](https://trello.com/b/wTNiF4AQ/pokemon-m2-project) 
 
 ### Git
-
-The url to your repository and to your deployed project
 
 [Repository Link](https://github.com/ncontin/Pokemon-M2-Project.git#main)
 
 [Deploy Link](https://pokemon-project-m2.adaptable.app/)
 
 ### Slides
-
-The url to your presentation slides
 
 [Slides Link](https://docs.google.com/presentation/d/1rZ4KbJ_qn9uSzrvivhI3aBeniQwbaa_vbwrdXcfOQlM/edit#slide=id.g23e6d134057_0_557)
